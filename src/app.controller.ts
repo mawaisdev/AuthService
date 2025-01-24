@@ -20,4 +20,9 @@ export class AppController {
     await this.prisma.$queryRaw`Select 1`;
     return { status: 'OK' };
   }
+
+  @Get('/protected')
+  protectedRoute() {
+    return { message: 'This is protected' };
+  }
 }
