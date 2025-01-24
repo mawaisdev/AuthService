@@ -6,6 +6,7 @@ import { seconds, ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import { APP_GUARD } from '@nestjs/core';
 import { PrismaService } from './prisma/prisma.service';
 import { PrismaModule } from './prisma/prisma.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { PrismaModule } from './prisma/prisma.module';
       throttlers: [{ ttl: seconds(60), limit: 100 }],
     }),
     PrismaModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [
