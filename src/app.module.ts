@@ -14,6 +14,7 @@ import { RedisThrottlerGuard } from './common/guards/custom-throttler.guard';
 // import { configSchema } from './config/configuration';
 import { HealthController } from './health/health.controller';
 import { TerminusModule } from '@nestjs/terminus';
+import { AiModule } from './ai/ai.module';
 
 @Module({
   imports: [
@@ -43,6 +44,7 @@ import { TerminusModule } from '@nestjs/terminus';
     AuthModule,
     RedisModule,
     TerminusModule,
+    AiModule,
   ],
   controllers: [AppController, HealthController],
   providers: [

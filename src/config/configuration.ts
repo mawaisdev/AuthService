@@ -10,6 +10,8 @@ export const configSchema = z.object({
   REDIS_HOST: z.string().default('localhost'),
   REDIS_PORT: z.coerce.number().default(6379),
   CACHE_TTL: z.coerce.number().default(3600),
+  OPENAI_API_KEY: z.string(),
+  OPENAI_MODEL: z.string(),
 });
 
 export interface AppConfig {
@@ -23,6 +25,8 @@ export interface AppConfig {
     port: number;
   };
   cacheTtl: number;
+  openaiApiKey: string;
+  openaiModel: string;
 }
 
 export default registerAs(
@@ -42,5 +46,7 @@ export default registerAs(
       port: parseInt(process.env.REDIS_PORT || '6379', 10),
     },
     cacheTtl: parseInt(process.env.CACHE_TTL || '3600', 10),
+    openaiApiKey: process.env.OPENAI_API_KEY || '',
+    openaiModel: process.env.OPENAI_MODEL || 'gpt-3.5-turbo',
   }),
 );
