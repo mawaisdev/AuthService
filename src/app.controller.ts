@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
 import { Controller, Get, Inject } from '@nestjs/common';
 import { AppService } from './app.service';
 import { PrismaService } from './prisma/prisma.service';
@@ -33,6 +32,7 @@ export class AppController {
   @Public()
   @Get('/cache-test')
   async cacheTest() {
+    console.log('Cache Endpoint');
     const cached = await this.cacheManager.get('test');
     if (!cached) {
       await this.cacheManager.set('test', 'redis_works', 10);
