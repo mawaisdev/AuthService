@@ -18,12 +18,6 @@ export class AppController {
     return this.appService.getHello();
   }
 
-  @Get('/health')
-  async healthCheck() {
-    await this.prisma.$queryRaw`Select 1`;
-    return { status: 'OK' };
-  }
-
   @Get('/protected')
   protectedRoute() {
     return { message: 'This is protected' };

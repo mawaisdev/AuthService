@@ -11,10 +11,19 @@ import { RedisModule } from './redis/redis.module';
 import { ThrottlerStorageRedisService } from '@nest-lab/throttler-storage-redis';
 import { Redis } from 'ioredis';
 import { RedisThrottlerGuard } from './common/guards/custom-throttler.guard';
+// import { configSchema } from './config/configuration';
+import { HealthController } from './health/health.controller';
+import { TerminusModule } from '@nestjs/terminus';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({ isGlobal: true }),
+    ConfigModule.forRoot({
+      isGlobal: true,
+      // validationSchema: configSchema,
+      // validationOptions: {
+      //   abortEarly: true,
+      // },
+    }),
     ThrottlerModule.forRoot({
       throttlers: [
         {
@@ -33,8 +42,9 @@ import { RedisThrottlerGuard } from './common/guards/custom-throttler.guard';
     PrismaModule,
     AuthModule,
     RedisModule,
+    TerminusModule,
   ],
-  controllers: [AppController],
+  controllers: [AppController, HealthController],
   providers: [
     AppService,
     {
